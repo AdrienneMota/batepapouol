@@ -27,7 +27,7 @@ function renderizarmensagens(resposta){
         if(mensagem.type === tipomensagem.private_message){
             //aqui chama o método
         }if(mensagem.type === tipomensagem.status){
-            //aqui chama o método
+            mensagemstatus(mensagem);
         }
     }
 }
@@ -42,11 +42,33 @@ function mensagemnormal(mensagem){
         <div class="nome-user"><strong>${mensagem.from}</strong></div>
         <div class="para">para</div>
         <div class="destino">
-            <strong>${mensagem.text}</strong>
+            <strong>${mensagem.to}</strong>
         </div>
-        <div class="conteudo">Conteúdo...</div>
+        <div class="conteudo">${mensagem.text}</div>
     </div>`;
 }
+
+function mensagemstatus(mensagem){
+    
+    const listamsg = document.querySelector('.mural');
+
+    listamsg.innerHTML +=     
+    `<div class="mensagem-status">
+    <div class="hora">(${mensagem.time})</div>
+    <div class="nome-user"><strong>${mensagem.from}</strong></div>
+    <div class="status">${mensagem.text}</div>
+    </div>`;
+}
+
+// function mensagemprivada(mensagem){
+    
+//     const listamsg = document.querySelector('.mural');
+
+//     listamsg.innerHTML +=     
+//     
+// }
+
+
 
 
 
