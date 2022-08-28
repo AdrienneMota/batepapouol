@@ -44,8 +44,9 @@ strong{
 .mural{
     background-color: #e5e5e5;
     margin: 80px auto;
-    height: 100%;
+    height: fit-content;
     padding-top: 26px;
+    padding-bottom: 26px;
 }
 
 .mensagem-status, .mensagem-reservada, .mensagem-normal{
@@ -53,7 +54,8 @@ strong{
     border-radius: 2px;
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 375px;
+    flex-wrap: wrap;
     font-size: 14px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -71,7 +73,7 @@ strong{
     background-color: white;
 }
 
-.data, .nome-user, .conteudo, .to, .destino{
+.hora, .nome-user, .conteudo, .para, .destino, .status{
     padding-left: 5px;
 }
 
