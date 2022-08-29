@@ -34,10 +34,9 @@ cadastrarusuario();
 //avisando para o servidor que o usuário ainda está na sala
 
 function toAqui(){
-    usuario.name = nomeuser;
     const requisicao = axios.post('https://mock-api.driven.com.br/api/v6/uol/status ', usuario);
     requisicao.then();
-    requisicao.catch(console.log('erro'));
+    requisicao.catch(console.log('deu erro'));
 }
 
 setInterval(toAqui, 5000);
@@ -132,8 +131,6 @@ function mostrarerro(erro){
 
 function enviarmensagem(){
     const textomensagem = document.querySelector('.texto');
-
-    textomensagem.innerHTML = '';
 
     const texto = {
         from: usuario.nome,
