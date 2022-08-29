@@ -1,19 +1,47 @@
+//Validação de usuário
+
+const nomeuser = prompt("Bem-vindo(a) ao bate papo uol. Por favor, digite seu lindo nome.");
+
+const usuario = {
+    name: ""
+};
+
+function cadastrarusuario(){
+    usuario.name = nomeuser;
+    const requisicao = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants ', usuario);
+    requisicao.then(tratarsucesso_user);
+    requisicao.catch(tratarerro_user);
+}
+
+function tratarsucesso_user(){
+    setInterval(listarmensagem, 3000);
+}
+
+function tratarerro_user(erro){
+    if(erro.response.status === 400){
+        alert('400.. O nome de usuário já existe, por favor, digite um nome válido');
+        location.reload();
+    }else{
+        alert('Ops.. Um erro inesperado. Tente novamente mais tarde.')
+    }
+}
+
+cadastrarusuario();
+
+///////////////////////////////////////////////////
+//renderizando as mensagens na tela
+
 const tipomensagem = {
     private_message: 'private_message',
     status: 'status',
     message_normal: 'message'
-}
+}; // objeto para guardar os tipos de mensagens
 
-listarmensagem();
 
 function listarmensagem(){
     const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
     promessa.then(renderizarmensagens);
     promessa.catch(mostrarerro);
-}
-
-function mostrarerro(){
-    alert('erro');
 }
 
 function renderizarmensagens(resposta){
@@ -26,10 +54,15 @@ function renderizarmensagens(resposta){
         }
         if(mensagem.type === tipomensagem.private_message){
             //aqui chama o método
-        }if(mensagem.type === tipomensagem.status){
-            mensagemstatus(mensagem);
         }
+        if(mensagem.type === tipomensagem.status){
+            mensagemstatus(mensagem);
+        };
     }
+    const mural = document.querySelector('.mural');
+    let lastmensagem = mural.lastElementChild;
+    lastmensagem.scrollIntoView();
+
 }
 
 function mensagemnormal(mensagem){
@@ -48,6 +81,10 @@ function mensagemnormal(mensagem){
     </div>`;
 }
 
+function mensagemprivada(){
+    //função renderizar mensagem privada
+}
+
 function mensagemstatus(mensagem){
     
     const listamsg = document.querySelector('.mural');
@@ -60,13 +97,10 @@ function mensagemstatus(mensagem){
     </div>`;
 }
 
-// function mensagemprivada(mensagem){
-    
-//     const listamsg = document.querySelector('.mural');
+function mostrarerro(){
+    alert('erro');
+}
 
-//     listamsg.innerHTML +=     
-//     
-// }
 
 
 

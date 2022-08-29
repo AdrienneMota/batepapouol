@@ -46,7 +46,7 @@ strong{
     margin: 80px auto;
     height: fit-content;
     padding-top: 26px;
-    padding-bottom: 26px;
+    padding-bottom: 90px;
 }
 
 .mensagem-status, .mensagem-reservada, .mensagem-normal{
@@ -85,7 +85,7 @@ footer{
     height: 80px;
     background: #ffffff;
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
-    /* border: 1px solid green; */
+    border: 1px solid green;
 }
 
 footer input{
@@ -95,7 +95,7 @@ footer input{
     border: none;
     font-size: 18px;
     font-style: italic;
-    /* border: 1px solid green; */
+    border: 1px solid green; 
     display: flex;
 }
 
