@@ -18,16 +18,16 @@ function tratarsucesso_user(){
     listarmensagem();
 }
 
+setInterval(listarmensagem, 3000);
+
 function tratarerro_user(erro){
     if(erro.response.status === 400){
-        alert('400.. O nome de usuário já existe, por favor, digite um nome válido.');
+        alert('Erro 400.. O nome de usuário já existe, por favor, digite um nome válido.');
         window.location.reload();
     }else{
         alert('Ops.. Um erro inesperado. Tente novamente mais tarde.')
     }
 }
-
-setInterval(listarmensagem, 3000);
 
 cadastrarusuario();
 //////////////////////////////////////////////////
@@ -36,11 +36,11 @@ cadastrarusuario();
 function toAqui(){
     usuario.name = nomeuser;
     const requisicao = axios.post('https://mock-api.driven.com.br/api/v6/uol/status ', usuario);
-    requisicao.then(console.log('avisado'));
+    requisicao.then();
     requisicao.catch(console.log('erro'));
 }
 
-setInterval(toAqui, 1000);
+setInterval(toAqui, 5000);
 
 //////////////////////////////////////////////////
 //renderizando as mensagens na tela
@@ -122,17 +122,18 @@ function mensagemstatus(mensagem){
     </div>`;
 }
 
-function mostrarerro(){
+function mostrarerro(erro){
     alert('Ops... Tivemos um erro inesperado.');
-    console.log(erro);
+    console.log(erro.response.status);
 }
-
 
 //////////////////////////////////////////////////
 //enviar mensagem
 
 function enviarmensagem(){
     const textomensagem = document.querySelector('.texto');
+
+    textomensagem.innerHTML = '';
 
     const texto = {
         from: usuario.nome,
@@ -147,7 +148,7 @@ function enviarmensagem(){
 }
 
 function usuario_fora(){
-    alert('erro');
+    window.location.reload();
 }
 
 
