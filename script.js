@@ -36,9 +36,11 @@ cadastrarusuario();
 function toAqui(){
     usuario.name = nomeuser;
     const requisicao = axios.post('https://mock-api.driven.com.br/api/v6/uol/status ', usuario);
+    requisicao.then(console.log('avisado'));
+    requisicao.catch(console.log('erro'));
 }
 
-setInterval(toAqui, 5000);
+setInterval(toAqui, 1000);
 
 //////////////////////////////////////////////////
 //renderizando as mensagens na tela
@@ -58,8 +60,7 @@ function listarmensagem(){
 
 function renderizarmensagens(resposta){
     const menssagens = resposta.data;
-    console.log(menssagens.time);
-
+    
     for (const mensagem of menssagens) {
         if(mensagem.type === tipomensagem.message_normal){
             mensagemnormal(mensagem);
@@ -141,14 +142,9 @@ function enviarmensagem(){
     }
 
     const promisse = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', texto);
-    promisse.then(printar);
-    // promisse.catch(usuario_fora);
+    promisse.then(listarmensagem);
+    promisse.catch(usuario_fora);
 }
-
-function printar(response){
-    console.log(response.data)
-}
-
 
 function usuario_fora(){
     alert('erro');
