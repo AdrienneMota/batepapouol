@@ -133,7 +133,7 @@ function enviarmensagem(){
     const textomensagem = document.querySelector('.texto');
 
     const texto = {
-        from: usuario.nome,
+        from: usuario.name,
         to: "Todos",
         text: textomensagem.value,
         type: "message"
